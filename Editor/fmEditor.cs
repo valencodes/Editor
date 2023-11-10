@@ -26,5 +26,10 @@ namespace Editor
         {
 
         }
+
+        private void nuevoToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
