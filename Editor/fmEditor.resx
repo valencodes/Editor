@@ -180,7 +180,7 @@
         JMjbuslQAAAAAElFTkSuQmCC
 </value>
   </data>
-  <data name="tbsDeshacer.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+  <data name="tsbDeshacer.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
         YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAABoSURBVEhL7dFBDoAgDETR3rxH69GKsyARQh0iNnFRk7+w
@@ -254,7 +254,7 @@
         rBkbHg1DwhhZMzY8GoaEMbJmbJh2LqQWHnEGHvgPAORocK0pfgpRAAAAAElFTkSuQmCC
 </value>
   </data>
-  <data name="tsbCentro.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+  <data name="tsbCentrado.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAABQAAAAUCAYAAACNiR0NAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
         YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAABFSURBVDhPYzhw4MB/auKRbCADAwNZGNkwsDnoApRiDAOx
@@ -521,5 +521,8 @@
   </metadata>
   <metadata name="cmnEditor.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>629, 17</value>
+  </metadata>
+  <metadata name="timeEditor.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>738, 17</value>
   </metadata>
 </root>
