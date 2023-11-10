@@ -87,6 +87,9 @@
     <EmbeddedResource Include="fmMargenes.resx">
       <DependentUpon>fmMargenes.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="fmPresentacion.resx">
+      <DependentUpon>fmPresentacion.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>

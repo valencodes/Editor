@@ -16,7 +16,9 @@ namespace Editor
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new fmEditor());
+            fmPresentacion ventanapresentacion = new fmPresentacion();
+            ventanapresentacion.ShowDialog();
+            Application.Run(new fmEditor());//Inicia la aplicación no modificar
         }
     }
 }
