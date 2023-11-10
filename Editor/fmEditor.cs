@@ -13,11 +13,16 @@ namespace Editor
 {
     public partial class fmEditor : Form
     {
+        string[] linea; // Vector para contener las líneas
+        int totalLineasImpresas; // Controla líneas impresas
         public fmEditor()
         {
             InitializeComponent();
             Application.Idle += AplicacionOciosa;
         }
+
+        fmDatos VentanaIntroduccion = new fmDatos();
+        fmMargenes VentanaMargenes = new fmMargenes();
         private void AplicacionOciosa(object sender, EventArgs e)
         {
             // Extraemos número de línea y columna de la posición actual del 
@@ -118,7 +123,18 @@ namespace Editor
 
         private void acercaDeToolStripMenuItem_Click(object sender, EventArgs e)
         {
-
+            //Asignamos tipo de fuente y color al dialogo para que el 
+            // diálogo los muestre y estén marcados
+            dlgFuentes.Color = rtbEditor.SelectionColor;
+            dlgFuentes.Font = rtbEditor.SelectionFont;
+            if (dlgFuentes.ShowDialog() == DialogResult.OK)
+            { // Si pulsa Aceptar aplicamos cambios al texto seleccionado
+                rtbEditor.SelectionFont = dlgFuentes.Font;
+                rtbEditor.SelectionColor = dlgFuentes.Color;
+                rtbEditor_SelectionChanged(sender, e);//Marcamos controles 
+                                                      // con cambios elegidos en diálogo 
+                rtbEditor.Modified = true;
+            }
         }
 
         private void fmEditor_Load(object sender, EventArgs e)
@@ -431,6 +447,223 @@ namespace Editor
                 }
 
             }
+        }
+
+        private void itImprimir_Click(object sender, EventArgs e)
+        {
+            if (dlgImprimir.ShowDialog() == DialogResult.OK)
+            { // Si se pulsó el botón "Aceptar" , entonces imprimir.
+                string texto = rtbEditor.Text;
+                char[] seps = { '\n', '\r' }; // LF y CR separadores de líneas
+                linea = texto.Split(seps); //Convertimos texto en vector
+                totalLineasImpresas = 0;
+                prindocEditor.Print(); //invoca al otro componente necesario
+            }
+        }
+
+        private void prindocEditor_PrintPage(object sender, System.Drawing.Printing.PrintPageEventArgs e)
+        {
+            // Variables para líneas por página, posición línea Y , márgenes
+            float lineasPorPag;
+            float pos_Y;
+            float margenIzq = e.MarginBounds.Left; //Obtenemos estos datos por 
+            float margenSup = e.MarginBounds.Top; // defecto del parámetro
+                                                  // Calculamos el número de líneas por página según tamaño fuente. 
+                                                  // Los datos de la fuente son los de rtbEditor.Font,salvo el color
+            Font fuente = rtbEditor.Font;
+            float altoFuente = fuente.GetHeight(e.Graphics);
+            lineasPorPag = e.MarginBounds.Height / altoFuente;
+            int lineasImpresasPorPag = 0;//Contador de líneas impresas en 1 página
+            while (totalLineasImpresas < linea.Length &&
+            lineasImpresasPorPag < lineasPorPag)
+            { // Imprimir cada una de las líneas
+                pos_Y = margenSup + (lineasImpresasPorPag * altoFuente); //Pos.Línea 
+
+                // Método que Dibuja la cadena de texto indicada en la ubicación 
+                //seleccionada, con objetos brush, Font y format pasados como parámetros
+                e.Graphics.DrawString(linea[totalLineasImpresas], fuente,
+                Brushes.Black, margenIzq, pos_Y, new StringFormat());
+                lineasImpresasPorPag += 1; // Líneas en una pág.
+                totalLineasImpresas += 1; // Total líneas impresas
+            }
+            // Si quedan líneas por imprimir, siguiente página
+            if (totalLineasImpresas < linea.Length)
+                e.HasMorePages = true; // se invoca de nuevo prinDocEditor_PrintPage
+            else
+                e.HasMorePages = false; // finaliza la impresión
+        }
+
+        private void itFormatoPagina_Click(object sender, EventArgs e)
+        {
+            dlgFuentes.Color = rtbEditor.ForeColor;
+            dlgFuentes.Font = rtbEditor.Font;
+
+            if (dlgFuentes.ShowDialog() == DialogResult.OK)
+            {
+                // Aplicamos cambios
+                rtbEditor.Font = dlgFuentes.Font;
+                rtbEditor.ForeColor = dlgFuentes.Color;
+                rtbEditor.Modified = true;
+            }
+        }
+
+        private void rtbEditor_SelectionChanged(object sender, EventArgs e)
+        {
+            try// Asignamos valores de tamaño, viñetas, estilo y fuente a botones
+            { // e ítems de menú correspondientes, extraídos de Selection y ……. 
+                cbTamanyo.Text =
+                Convert.ToString(Math.Truncate(rtbEditor.SelectionFont.Size));
+                itVietas.Checked = rtbEditor.SelectionBullet;
+                tsbNegrita.Checked = rtbEditor.SelectionFont.Bold;
+                tsbSubrayado.Checked = rtbEditor.SelectionFont.Underline;
+                tsbTachado.Checked = rtbEditor.SelectionFont.Strikeout;
+                tsbCursiva.Checked = rtbEditor.SelectionFont.Italic;
+                cbFuentes.SelectedIndex =
+                cbFuentes.Items.IndexOf(rtbEditor.SelectionFont.Name);
+            }
+            catch
+            {
+                return;
+            }
+            // Marcamos botones e ítems de menú de alineación, según esté en el 
+            // párrafo o línea.
+            tsbIzquierda.Checked = rtbEditor.SelectionAlignment ==
+            HorizontalAlignment.Left;
+            tsbDerecha.Checked = rtbEditor.SelectionAlignment ==
+            HorizontalAlignment.Right;
+            tsbCentrado.Checked = rtbEditor.SelectionAlignment ==
+            HorizontalAlignment.Center;
+            itIzquierda.Checked = tsbIzquierda.Checked;
+            itDerecha.Checked = tsbDerecha.Checked;
+            itCentrado.Checked = tsbCentrado.Checked;
+
+        }
+
+        private void itCortar_Click(object sender, EventArgs e)
+        {
+            rtbEditor.Cut();
+        }
+
+        private void itCopiar_Click(object sender, EventArgs e)
+        {
+            rtbEditor.Copy();
+        }
+
+        private void itPegar_Click(object sender, EventArgs e)
+        {
+            rtbEditor.Paste();
+        }
+
+        private void itDeshacer_Click(object sender, EventArgs e)
+        {
+            if (rtbEditor.CanUndo)
+            {
+                rtbEditor.Undo();
+            }
+        }
+
+        private void itRehacer_Click(object sender, EventArgs e)
+        {
+            if (rtbEditor.CanRedo)
+            {
+                rtbEditor.Redo();
+            }
+        }
+
+        private void itSeleccionar_Click(object sender, EventArgs e)
+        {
+            rtbEditor.SelectAll();
+        }
+
+        private void itBorrar_Click(object sender, EventArgs e)
+        {
+            if (rtbEditor.SelectionLength > 0)
+            {
+                rtbEditor.SelectedText = "";
+            }
+
+        }
+
+        private void itIr_Click(object sender, EventArgs e)
+        {
+            VentanaIntroduccion.tbDato.Clear();// TextBox de fmDatos recordar debe 
+                                               // estar modifiers=public
+            if (VentanaIntroduccion.ShowDialog() == DialogResult.OK)
+            {
+                int numlinea = 0, conta = 0, acumula = 0;
+                try
+                { // Convertimos a entero número línea tecleado
+                    numlinea = Convert.ToInt32(VentanaIntroduccion.tbDato.Text);
+                }
+                catch (Exception mierror)
+                {
+                    MessageBox.Show(mierror.Message);
+                }
+                // Mientras es menor que número de línea tecleado y hay líneas
+                while ((conta < (numlinea - 1)) && (conta <
+                (rtbEditor.Lines.Length - 1)))
+                {//Acumulamos los caracteres +1 <intro> de las líneas anteriores a 
+                    acumula += ((rtbEditor.Lines[conta].Length) + 1);//la solicitada
+                    conta++;
+                } // Enviamos cursor al primer carácter de la línea
+                rtbEditor.SelectionStart = acumula;
+            }
+        }
+
+        private void itMargenes_Click(object sender, EventArgs e)
+        {
+            // Ponemos valores actuales de márgenes en los comboBox del 
+            // formulario antes de que se muestre
+            VentanaMargenes.cbIzquierdo.Text =
+            Convert.ToString(rtbEditor.SelectionIndent);
+            VentanaMargenes.cbDerecho.Text =
+            Convert.ToString(rtbEditor.SelectionRightIndent);
+            // Mostramos formulario
+            if (VentanaMargenes.ShowDialog() == DialogResult.OK)
+            { // Si el usuario ha pulsado Aceptar aplicamos márgenes con 
+              // los valores tecleados en el formulario indicado 
+                rtbEditor.SelectionRightIndent =
+                Convert.ToInt32(VentanaMargenes.cbDerecho.Text);
+                rtbEditor.SelectionIndent =
+                Convert.ToInt32(VentanaMargenes.cbIzquierdo.Text);
+                rtbEditor.Modified = true;
+            }
+        }
+
+        private void itVietas_Click(object sender, EventArgs e)
+        {
+            itVietas.Checked = !itVietas.Checked;
+            rtbEditor.SelectionBullet = itVietas.Checked;
+            rtbEditor.Modified = true;
+        }
+
+        private void itBarraEstandar_Click(object sender, EventArgs e)
+        {
+            // Marcamos ítems de ambos menús
+            itBarraEstandar.Checked = !itBarraEstandar.Checked;
+            itcBarraEstandar.Checked = !itcBarraEstandar.Checked;
+            // Mostramos barra correspondiente o no
+            tsBarraEstandar.Visible = itBarraEstandar.Checked;
+        }
+
+        private void itBarraFormato_Click(object sender, EventArgs e)
+        {
+            // Marcamos ítems de ambos menús
+            itBarraFormato.Checked = !itBarraFormato.Checked;
+            itcBarraFormato.Checked = !itcBarraFormato.Checked;
+            // Mostramos barra correspondiente o no
+            tsBarraFormato.Visible = itBarraFormato.Checked;
+
+        }
+
+        private void itBarraEstado_Click(object sender, EventArgs e)
+        {
+            // Marcamos ítems de ambos menús
+            itBarraEstado.Checked = !itBarraEstado.Checked;
+            itcBarraEstado.Checked = !itcBarraEstado.Checked;
+            // Mostramos barra correspondiente o no
+            stEstadoEditor.Visible = itBarraEstado.Checked;
+
         }
     }
 }

@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             this.label1 = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.tbDato = new System.Windows.Forms.TextBox();
             this.button1 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
             this.SuspendLayout();
@@ -44,13 +44,13 @@
             this.label1.TabIndex = 0;
             this.label1.Text = "Introduce Número de Línea";
             // 
-            // textBox1
+            // tbDato
             // 
-            this.textBox1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.textBox1.Location = new System.Drawing.Point(15, 31);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(247, 20);
-            this.textBox1.TabIndex = 1;
+            this.tbDato.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.tbDato.Location = new System.Drawing.Point(15, 31);
+            this.tbDato.Name = "tbDato";
+            this.tbDato.Size = new System.Drawing.Size(247, 20);
+            this.tbDato.TabIndex = 1;
             // 
             // button1
             // 
@@ -83,7 +83,7 @@
             this.ClientSize = new System.Drawing.Size(279, 111);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.button1);
-            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.tbDato);
             this.Controls.Add(this.label1);
             this.Name = "fmDatos";
             this.Text = "fmDatos";
@@ -97,6 +97,6 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Button button2;
-        public System.Windows.Forms.TextBox textBox1;
+        public System.Windows.Forms.TextBox tbDato;
     }
 }
