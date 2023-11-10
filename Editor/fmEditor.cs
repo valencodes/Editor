@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -91,11 +92,29 @@ namespace Editor
         {
 
         }
-
-        private void nuevoToolStripMenuItem_Click(object sender, EventArgs e)
+        private void itNuevo_Click(object sender, EventArgs e)
         {
-
+            stEstadoEditor.Items[0].Text = "Generando un documento nuevo, guardando el anterior si procede";
+            if (rtbEditor.Modified) // True si ha habido cambios en el editor
+            {
+                DialogResult resultado = MessageBox.Show("Hay Cambios pendientes de Guardar.Guardas ? ", "Guardar Cambios", MessageBoxButtons.YesNoCancel);
+                switch (resultado)
+                {
+                    case DialogResult.Yes: //Si contesta sí guardamos
+                        itGuardar.PerformClick();//De guardar puede ir a Guarda como
+                        break;
+                    case DialogResult.Cancel: //Cancela operación de nuevo documento
+                        rtbEditor.Focus();
+                        return; // Salimos de la función
+                }
+            } // Si ha contestado si o no, iniciamos nuevo documento
+            rtbEditor.Clear(); //Borra todo el contenido del editor
+            Text = "Documento2"; //Propone un nuevo nombre y lo asigna al título
+            itQuitarFormatos.PerformClick(); // Ponemos valores por defecto
+            rtbEditor.Modified = false; // De momento no hay cambios pendientes
+            stEstadoEditor.Items[0].Text = "";
         }
+
 
         private void acercaDeToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -201,7 +220,7 @@ namespace Editor
                     rtbEditor.Select(x, 1); // Seleccionamos caracter por caracter
 
                     // Aplica los estilos al caracter
-                    rtbEditor.SelectionFont = 
+                    rtbEditor.SelectionFont =
                         new Font(rtbEditor.SelectionFont.Name, rtbEditor.SelectionFont.Size, negrita | subrayado | tachado | cursiva);
                 }
                 // Restaura la selección original después de realizar cambios
@@ -324,8 +343,8 @@ namespace Editor
             stEstadoEditor.Items[0].Text = "Abriendo Archivo de diferentes formatos";
             if (rtbEditor.Modified) // True si hay cambios sobre el editor
             {
-                DialogResult resultado = MessageBox.Show("Hay Cambios sin Guardar.Guardas ? ", "Guardar Cambios", MessageBoxButtons.YesNoCancel); 
-            switch (resultado)
+                DialogResult resultado = MessageBox.Show("Hay Cambios sin Guardar.Guardas ? ", "Guardar Cambios", MessageBoxButtons.YesNoCancel);
+                switch (resultado)
                 {
                     case DialogResult.Yes: // Si contesta si
                         itGuardar.PerformClick();// Invocamos evento botón guardar 
@@ -354,6 +373,64 @@ namespace Editor
             stEstadoEditor.Items[0].Text = "";
             itQuitarFormatos.PerformClick(); //Asignamos valores iniciales al editor 
             rtbEditor.Focus();
+        }
+
+        private void itGuardar_Click(object sender, EventArgs e)
+        {
+            if (Text == "Documento1")
+            {
+                itGuardarComo.PerformClick();
+            }
+            else
+            { // La comprobación, si es texto plano o rtf en guardar como
+                rtbEditor.SaveFile(Text);
+                rtbEditor.Modified = false;
+                rtbEditor.Focus();
+            }
+        }
+
+        private void itGuardarComo_Click(object sender, EventArgs e)
+        {
+            dlgGuardar.FileName = Text; //Asignamos nombre del text del formulario 
+                                        // a la propiedad FileName del diálogo
+            if (dlgGuardar.ShowDialog() == DialogResult.OK && //Si pulsa Aceptar 
+             dlgGuardar.FileName.Length > 0) // y hay nombre asignado
+            {
+                if (dlgGuardar.FilterIndex == 1) //Averiguamos formato elegido
+                {
+                    rtbEditor.SaveFile(dlgGuardar.FileName, //Texto plano
+                    RichTextBoxStreamType.PlainText);
+                }
+                else
+                {
+                    rtbEditor.SaveFile(dlgGuardar.FileName, // Texto enriquecido
+                    RichTextBoxStreamType.RichText);
+                }
+                Text = dlgGuardar.FileName; //Ponemos en barra de título del 
+                                            // formulario el nombre por si ha cambiado
+                rtbEditor.Modified = false;
+            }
+
+        }
+
+        private void fmEditor_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            //Si hay cambios pendientes y hay algo escrito en el editor
+            if ((rtbEditor.Modified) && (rtbEditor.Text.Length > 0))
+            {
+                DialogResult resultado = MessageBox.Show("Hay Cambios pendientes de Guardar.Guardas ? ", "Guardar Cambios", MessageBoxButtons.YesNoCancel);
+                switch (resultado)
+                {
+                    case DialogResult.Yes:
+                        itGuardar.PerformClick();
+                        break;
+                    case DialogResult.Cancel:
+                        e.Cancel = true; //anula el cierre del formulario
+                        rtbEditor.Focus();
+                        break;
+                }
+
+            }
         }
     }
 }

@@ -132,6 +132,8 @@
             this.itDerecha = new System.Windows.Forms.ToolStripMenuItem();
             this.dlgColor = new System.Windows.Forms.ColorDialog();
             this.dlgAbrir = new System.Windows.Forms.OpenFileDialog();
+            this.dlgGuardar = new System.Windows.Forms.SaveFileDialog();
+            this.dlgImprimir = new System.Windows.Forms.PrintDialog();
             this.tsBarraEstandar.SuspendLayout();
             this.tsBarraFormato.SuspendLayout();
             this.stEstadoEditor.SuspendLayout();
@@ -174,6 +176,7 @@
             this.tsbNuevo.Name = "tsbNuevo";
             this.tsbNuevo.Size = new System.Drawing.Size(23, 22);
             this.tsbNuevo.Text = "tsbNuevo";
+            this.tsbNuevo.Click += new System.EventHandler(this.itNuevo_Click);
             // 
             // tsbAbrir
             // 
@@ -193,6 +196,7 @@
             this.tsbGuardar.Name = "tsbGuardar";
             this.tsbGuardar.Size = new System.Drawing.Size(23, 22);
             this.tsbGuardar.Text = "tsbGuardar";
+            this.tsbGuardar.Click += new System.EventHandler(this.itGuardar_Click);
             // 
             // tsbImprimir
             // 
@@ -561,7 +565,7 @@
             this.itNuevo.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.U)));
             this.itNuevo.Size = new System.Drawing.Size(180, 22);
             this.itNuevo.Text = "&Nuevo";
-            this.itNuevo.Click += new System.EventHandler(this.nuevoToolStripMenuItem_Click);
+            this.itNuevo.Click += new System.EventHandler(this.itNuevo_Click);
             // 
             // toolStripMenuItem1
             // 
@@ -584,12 +588,14 @@
             this.itGuardar.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.G)));
             this.itGuardar.Size = new System.Drawing.Size(180, 22);
             this.itGuardar.Text = "&Guardar";
+            this.itGuardar.Click += new System.EventHandler(this.itGuardar_Click);
             // 
             // itGuardarComo
             // 
             this.itGuardarComo.Name = "itGuardarComo";
             this.itGuardarComo.Size = new System.Drawing.Size(180, 22);
             this.itGuardarComo.Text = "&Guardar Como";
+            this.itGuardarComo.Click += new System.EventHandler(this.itGuardarComo_Click);
             // 
             // toolStripMenuItem2
             // 
@@ -990,6 +996,19 @@
             this.dlgAbrir.InitialDirectory = ".\\archivos";
             this.dlgAbrir.Title = "Abrir documentos";
             // 
+            // dlgGuardar
+            // 
+            this.dlgGuardar.AutoUpgradeEnabled = false;
+            this.dlgGuardar.DefaultExt = "rtf";
+            this.dlgGuardar.Filter = "\"Archivo de Texto (.txt)|*.txt|Archivo Enriquecido (.rtf)|*.rtf|Todos los Archivo" +
+    "s (*.*)|*.*\"";
+            this.dlgGuardar.InitialDirectory = ".\\archivos";
+            this.dlgGuardar.Title = "Guardar documento";
+            // 
+            // dlgImprimir
+            // 
+            this.dlgImprimir.UseEXDialog = true;
+            // 
             // fmEditor
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1003,6 +1022,7 @@
             this.MainMenuStrip = this.mnEditor;
             this.Name = "fmEditor";
             this.Text = "Editor";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.fmEditor_FormClosing);
             this.Load += new System.EventHandler(this.fmEditor_Load);
             this.tsBarraEstandar.ResumeLayout(false);
             this.tsBarraEstandar.PerformLayout();
@@ -1123,6 +1143,8 @@
         private System.Windows.Forms.ToolStripMenuItem itDerecha;
         private System.Windows.Forms.ColorDialog dlgColor;
         private System.Windows.Forms.OpenFileDialog dlgAbrir;
+        private System.Windows.Forms.SaveFileDialog dlgGuardar;
+        private System.Windows.Forms.PrintDialog dlgImprimir;
     }
 }
 
