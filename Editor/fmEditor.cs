@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ElFormulario;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -791,6 +792,11 @@ namespace Editor
         private void sl3_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void itAcercaDe_Click(object sender, EventArgs e)
+        {
+            new fmAcercade().ShowDialog();
         }
     }
 }
