@@ -8,6 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static System.Windows.Forms.LinkLabel;
 
 namespace Editor
 {
@@ -15,6 +16,10 @@ namespace Editor
     {
         string[] linea; // Vector para contener las líneas
         int totalLineasImpresas; // Controla líneas impresas
+        FontStyle miestilo = new FontStyle();
+        string mifuente;
+        float mitamanyo;
+        Color micolor;
         public fmEditor()
         {
             InitializeComponent();
@@ -663,6 +668,128 @@ namespace Editor
             itcBarraEstado.Checked = !itcBarraEstado.Checked;
             // Mostramos barra correspondiente o no
             stEstadoEditor.Visible = itBarraEstado.Checked;
+
+        }
+
+        private void tsbCopiarFormatos_Click(object sender, EventArgs e)
+        {
+            //Poner propiedad CheckOnClick=true para evitar poner código de marcado
+            if (tsbCopiarFormatos.Checked)
+            { // Aviso en barra de estado de botón pulsado y acción a realizar
+                stEstadoEditor.Items[0].Text = "Vas a copiar formato a la nueva ubicación, donde hagas click"; 
+            }
+            else
+            {
+                stEstadoEditor.Items[0].Text = "";
+            }
+            //Si el botón de copiar formatos está pulsado, guardamos los formatos
+            miestilo = rtbEditor.SelectionFont.Style; //Variables globales
+            mifuente = rtbEditor.SelectionFont.Name;
+            mitamanyo = rtbEditor.SelectionFont.Size;
+            micolor = rtbEditor.SelectionColor;
+        }
+
+        private void rtbEditor_MouseDown(object sender, MouseEventArgs e)
+        {
+            stEstadoEditor.Items[0].Text = "Si el botón de copiar formatos está pulsado se aplicarán los formatos copiados"; 
+            if (tsbCopiarFormatos.Checked) //Si está pulsado se aplicarán formatos
+            {
+                rtbEditor.SelectionFont = new Font(mifuente, mitamanyo, miestilo);
+                rtbEditor.SelectionColor = micolor;
+            }
+
+        }
+
+        private void tsbNegrita_MouseHover(object sender, EventArgs e)
+        {
+            if (sender == tsbNegrita)
+            {
+                stEstadoEditor.Items[0].Text = "Aplica Negrita al Texto";
+            }
+            else if (sender == tsbSubrayado)
+            {
+                stEstadoEditor.Items[0].Text = "Aplica Subrayado al Texto";
+            }
+            else if (sender == tsbTachado)
+            {
+                stEstadoEditor.Items[0].Text = "Aplica Tachado al Texto";
+            }
+            else if (sender == tsbCursiva)
+            {
+                stEstadoEditor.Items[0].Text = "Aplica Cursiva al Texto";
+            }
+            else if (sender == tsbIzquierda)
+            {
+                stEstadoEditor.Items[0].Text = "Justifica el texto a la izquierda";
+            }
+            else if (sender == tsbCentrado)
+            {
+                stEstadoEditor.Items[0].Text = "Justifica el texto al centro";
+            }
+            else if (sender == tsbDerecha)
+            {
+                stEstadoEditor.Items[0].Text = "Justifica el texto a la derecha";
+            }
+            else if (sender == cbFuentes)
+            {
+                stEstadoEditor.Items[0].Text = "Selecciona una fuente para el texto";
+            }
+            else if (sender == cbTamanyo)
+            {
+                stEstadoEditor.Items[0].Text = "Selecciona un tamaño para el texto";
+            }
+            else if (sender == tsbColores)
+            {
+                stEstadoEditor.Items[0].Text = "Selecciona un color para el texto";
+            }
+            else if (sender == tsbNuevo)
+            {
+                stEstadoEditor.Items[0].Text = "Crea un nuevo documento";
+            }
+            else if (sender == tsbAbrir)
+            {
+                stEstadoEditor.Items[0].Text = "Abre un documento existente";
+            }
+            else if (sender == tsbGuardar)
+            {
+                stEstadoEditor.Items[0].Text = "Guarda los cambios";
+            }
+            else if (sender == tsbImprimir)
+            {
+                stEstadoEditor.Items[0].Text = "Imprime el documento";
+            }
+            else if (sender == tsbCortar)
+            {
+                stEstadoEditor.Items[0].Text = "Corta el texto seleccionado";
+            }
+            else if (sender == tsbCopiar)
+            {
+                stEstadoEditor.Items[0].Text = "Copia el texto selecionado";
+            }
+            else if (sender == tsbPegar)
+            {
+                stEstadoEditor.Items[0].Text = "Pega el texto del portapapeles";
+            }
+            else if (sender == tsbDeshacer)
+            {
+                stEstadoEditor.Items[0].Text = "Deshace los cambios";
+            }
+            else if (sender == tsbRehacer)
+            {
+                stEstadoEditor.Items[0].Text = "Rehace los cambios";
+            }
+            else if (sender == tsbCopiarFormatos)
+            {
+                stEstadoEditor.Items[0].Text = "Copia el formato del texto";
+            }
+            else if (sender == tsbQuitarFormatos)
+            {
+                stEstadoEditor.Items[0].Text = "Quita el formato al texto";
+            }
+        }
+
+        private void sl3_Click(object sender, EventArgs e)
+        {
 
         }
     }

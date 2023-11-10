@@ -136,6 +136,7 @@
             this.dlgImprimir = new System.Windows.Forms.PrintDialog();
             this.prindocEditor = new System.Drawing.Printing.PrintDocument();
             this.dlgFuentes = new System.Windows.Forms.FontDialog();
+            this.ttEditor = new System.Windows.Forms.ToolTip(this.components);
             this.tsBarraEstandar.SuspendLayout();
             this.tsBarraFormato.SuspendLayout();
             this.stEstadoEditor.SuspendLayout();
@@ -178,7 +179,9 @@
             this.tsbNuevo.Name = "tsbNuevo";
             this.tsbNuevo.Size = new System.Drawing.Size(23, 22);
             this.tsbNuevo.Text = "tsbNuevo";
+            this.tsbNuevo.ToolTipText = "Nuevo";
             this.tsbNuevo.Click += new System.EventHandler(this.itNuevo_Click);
+            this.tsbNuevo.MouseHover += new System.EventHandler(this.tsbNegrita_MouseHover);
             // 
             // tsbAbrir
             // 
@@ -188,7 +191,9 @@
             this.tsbAbrir.Name = "tsbAbrir";
             this.tsbAbrir.Size = new System.Drawing.Size(23, 22);
             this.tsbAbrir.Text = "tsbAbrir";
+            this.tsbAbrir.ToolTipText = "Abrir";
             this.tsbAbrir.Click += new System.EventHandler(this.itAbrir_Click);
+            this.tsbAbrir.MouseHover += new System.EventHandler(this.tsbNegrita_MouseHover);
             // 
             // tsbGuardar
             // 
@@ -198,7 +203,9 @@
             this.tsbGuardar.Name = "tsbGuardar";
             this.tsbGuardar.Size = new System.Drawing.Size(23, 22);
             this.tsbGuardar.Text = "tsbGuardar";
+            this.tsbGuardar.ToolTipText = "Guardar";
             this.tsbGuardar.Click += new System.EventHandler(this.itGuardar_Click);
+            this.tsbGuardar.MouseHover += new System.EventHandler(this.tsbNegrita_MouseHover);
             // 
             // tsbImprimir
             // 
@@ -208,7 +215,9 @@
             this.tsbImprimir.Name = "tsbImprimir";
             this.tsbImprimir.Size = new System.Drawing.Size(23, 22);
             this.tsbImprimir.Text = "tsbImprimir";
+            this.tsbImprimir.ToolTipText = "Imprimir";
             this.tsbImprimir.Click += new System.EventHandler(this.itImprimir_Click);
+            this.tsbImprimir.MouseHover += new System.EventHandler(this.tsbNegrita_MouseHover);
             // 
             // toolStripSeparator1
             // 
@@ -223,7 +232,9 @@
             this.tsbCortar.Name = "tsbCortar";
             this.tsbCortar.Size = new System.Drawing.Size(23, 22);
             this.tsbCortar.Text = "toolStripButton1";
+            this.tsbCortar.ToolTipText = "Cortar";
             this.tsbCortar.Click += new System.EventHandler(this.itCortar_Click);
+            this.tsbCortar.MouseHover += new System.EventHandler(this.tsbNegrita_MouseHover);
             // 
             // tsbCopiar
             // 
@@ -233,7 +244,9 @@
             this.tsbCopiar.Name = "tsbCopiar";
             this.tsbCopiar.Size = new System.Drawing.Size(23, 22);
             this.tsbCopiar.Text = "toolStripButton2";
+            this.tsbCopiar.ToolTipText = "Copiar";
             this.tsbCopiar.Click += new System.EventHandler(this.itCopiar_Click);
+            this.tsbCopiar.MouseHover += new System.EventHandler(this.tsbNegrita_MouseHover);
             // 
             // tsbPegar
             // 
@@ -243,7 +256,9 @@
             this.tsbPegar.Name = "tsbPegar";
             this.tsbPegar.Size = new System.Drawing.Size(23, 22);
             this.tsbPegar.Text = "toolStripButton3";
+            this.tsbPegar.ToolTipText = "Pegar";
             this.tsbPegar.Click += new System.EventHandler(this.itPegar_Click);
+            this.tsbPegar.MouseHover += new System.EventHandler(this.tsbNegrita_MouseHover);
             // 
             // toolStripSeparator2
             // 
@@ -258,7 +273,9 @@
             this.tsbDeshacer.Name = "tsbDeshacer";
             this.tsbDeshacer.Size = new System.Drawing.Size(23, 22);
             this.tsbDeshacer.Text = "toolStripButton1";
+            this.tsbDeshacer.ToolTipText = "Deshacer";
             this.tsbDeshacer.Click += new System.EventHandler(this.itDeshacer_Click);
+            this.tsbDeshacer.MouseHover += new System.EventHandler(this.tsbNegrita_MouseHover);
             // 
             // tsbRehacer
             // 
@@ -268,7 +285,9 @@
             this.tsbRehacer.Name = "tsbRehacer";
             this.tsbRehacer.Size = new System.Drawing.Size(23, 22);
             this.tsbRehacer.Text = "toolStripButton2";
+            this.tsbRehacer.ToolTipText = "Rehacer";
             this.tsbRehacer.Click += new System.EventHandler(this.itRehacer_Click);
+            this.tsbRehacer.MouseHover += new System.EventHandler(this.tsbNegrita_MouseHover);
             // 
             // toolStripSeparator3
             // 
@@ -283,6 +302,9 @@
             this.tsbCopiarFormatos.Name = "tsbCopiarFormatos";
             this.tsbCopiarFormatos.Size = new System.Drawing.Size(23, 22);
             this.tsbCopiarFormatos.Text = "toolStripButton1";
+            this.tsbCopiarFormatos.ToolTipText = "Copiar formato";
+            this.tsbCopiarFormatos.Click += new System.EventHandler(this.tsbCopiarFormatos_Click);
+            this.tsbCopiarFormatos.MouseHover += new System.EventHandler(this.tsbNegrita_MouseHover);
             // 
             // toolStripSeparator4
             // 
@@ -297,6 +319,8 @@
             this.tsbQuitarFormatos.Name = "tsbQuitarFormatos";
             this.tsbQuitarFormatos.Size = new System.Drawing.Size(23, 22);
             this.tsbQuitarFormatos.Text = "toolStripButton2";
+            this.tsbQuitarFormatos.ToolTipText = "Quitar formatos";
+            this.tsbQuitarFormatos.MouseHover += new System.EventHandler(this.tsbNegrita_MouseHover);
             // 
             // toolStripSeparator5
             // 
@@ -334,7 +358,9 @@
             this.tsbNegrita.Name = "tsbNegrita";
             this.tsbNegrita.Size = new System.Drawing.Size(23, 22);
             this.tsbNegrita.Text = "toolStripButton1";
+            this.tsbNegrita.ToolTipText = "Negrita";
             this.tsbNegrita.Click += new System.EventHandler(this.tsbNegrita_Click);
+            this.tsbNegrita.MouseHover += new System.EventHandler(this.tsbNegrita_MouseHover);
             // 
             // tsbSubrayado
             // 
@@ -345,7 +371,9 @@
             this.tsbSubrayado.Name = "tsbSubrayado";
             this.tsbSubrayado.Size = new System.Drawing.Size(23, 22);
             this.tsbSubrayado.Text = "toolStripButton1";
+            this.tsbSubrayado.ToolTipText = "Subrayado";
             this.tsbSubrayado.Click += new System.EventHandler(this.tsbNegrita_Click);
+            this.tsbSubrayado.MouseHover += new System.EventHandler(this.tsbNegrita_MouseHover);
             // 
             // tsbTachado
             // 
@@ -356,7 +384,9 @@
             this.tsbTachado.Name = "tsbTachado";
             this.tsbTachado.Size = new System.Drawing.Size(23, 22);
             this.tsbTachado.Text = "toolStripButton1";
+            this.tsbTachado.ToolTipText = "Tachado";
             this.tsbTachado.Click += new System.EventHandler(this.tsbNegrita_Click);
+            this.tsbTachado.MouseHover += new System.EventHandler(this.tsbNegrita_MouseHover);
             // 
             // tsbCursiva
             // 
@@ -367,7 +397,9 @@
             this.tsbCursiva.Name = "tsbCursiva";
             this.tsbCursiva.Size = new System.Drawing.Size(23, 22);
             this.tsbCursiva.Text = "toolStripButton1";
+            this.tsbCursiva.ToolTipText = "Cursiva";
             this.tsbCursiva.Click += new System.EventHandler(this.tsbNegrita_Click);
+            this.tsbCursiva.MouseHover += new System.EventHandler(this.tsbNegrita_MouseHover);
             // 
             // toolStripSeparator6
             // 
@@ -382,7 +414,9 @@
             this.tsbIzquierda.Name = "tsbIzquierda";
             this.tsbIzquierda.Size = new System.Drawing.Size(23, 22);
             this.tsbIzquierda.Text = "toolStripButton1";
+            this.tsbIzquierda.ToolTipText = "Izquierda";
             this.tsbIzquierda.Click += new System.EventHandler(this.tsbIzquierda_Click);
+            this.tsbIzquierda.MouseHover += new System.EventHandler(this.tsbNegrita_MouseHover);
             // 
             // tsbCentrado
             // 
@@ -392,7 +426,9 @@
             this.tsbCentrado.Name = "tsbCentrado";
             this.tsbCentrado.Size = new System.Drawing.Size(23, 22);
             this.tsbCentrado.Text = "toolStripButton2";
+            this.tsbCentrado.ToolTipText = "Centrado";
             this.tsbCentrado.Click += new System.EventHandler(this.tsbCentrado_Click);
+            this.tsbCentrado.MouseHover += new System.EventHandler(this.tsbNegrita_MouseHover);
             // 
             // tsbDerecha
             // 
@@ -402,7 +438,9 @@
             this.tsbDerecha.Name = "tsbDerecha";
             this.tsbDerecha.Size = new System.Drawing.Size(23, 22);
             this.tsbDerecha.Text = "toolStripButton3";
+            this.tsbDerecha.ToolTipText = "Derecha";
             this.tsbDerecha.Click += new System.EventHandler(this.tsbDerecha_Click);
+            this.tsbDerecha.MouseHover += new System.EventHandler(this.tsbNegrita_MouseHover);
             // 
             // toolStripSeparator7
             // 
@@ -414,7 +452,9 @@
             this.cbFuentes.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbFuentes.Name = "cbFuentes";
             this.cbFuentes.Size = new System.Drawing.Size(121, 25);
+            this.cbFuentes.ToolTipText = "Fuentes";
             this.cbFuentes.SelectedIndexChanged += new System.EventHandler(this.cbFuentes_SelectedIndexChanged);
+            this.cbFuentes.MouseHover += new System.EventHandler(this.tsbNegrita_MouseHover);
             // 
             // cbTamanyo
             // 
@@ -443,9 +483,11 @@
             "100"});
             this.cbTamanyo.Name = "cbTamanyo";
             this.cbTamanyo.Size = new System.Drawing.Size(50, 25);
+            this.cbTamanyo.ToolTipText = "Tamaño";
             this.cbTamanyo.SelectedIndexChanged += new System.EventHandler(this.cbTamanyo_SelectedIndexChanged);
             this.cbTamanyo.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.cbTamanyo_KeyPress);
             this.cbTamanyo.Click += new System.EventHandler(this.cbTamanyo_Click);
+            this.cbTamanyo.MouseHover += new System.EventHandler(this.tsbNegrita_MouseHover);
             this.cbTamanyo.TextChanged += new System.EventHandler(this.cbTamanyo_TextChanged);
             // 
             // toolStripSeparator8
@@ -461,7 +503,9 @@
             this.tsbColores.Name = "tsbColores";
             this.tsbColores.Size = new System.Drawing.Size(23, 22);
             this.tsbColores.Text = "toolStripButton1";
+            this.tsbColores.ToolTipText = "Colores";
             this.tsbColores.Click += new System.EventHandler(this.tsbColores_Click);
+            this.tsbColores.MouseHover += new System.EventHandler(this.tsbNegrita_MouseHover);
             // 
             // stEstadoEditor
             // 
@@ -484,7 +528,6 @@
             this.sl1.BorderStyle = System.Windows.Forms.Border3DStyle.RaisedOuter;
             this.sl1.Name = "sl1";
             this.sl1.Size = new System.Drawing.Size(118, 17);
-            this.sl1.Text = "toolStripStatusLabel1";
             this.sl1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // sl2
@@ -494,7 +537,6 @@
             this.sl2.BorderStyle = System.Windows.Forms.Border3DStyle.SunkenOuter;
             this.sl2.Name = "sl2";
             this.sl2.Size = new System.Drawing.Size(118, 17);
-            this.sl2.Text = "toolStripStatusLabel1";
             this.sl2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // sl3
@@ -504,8 +546,8 @@
             this.sl3.BorderStyle = System.Windows.Forms.Border3DStyle.SunkenOuter;
             this.sl3.Name = "sl3";
             this.sl3.Size = new System.Drawing.Size(118, 17);
-            this.sl3.Text = "toolStripStatusLabel1";
             this.sl3.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.sl3.Click += new System.EventHandler(this.sl3_Click);
             // 
             // sl4
             // 
@@ -514,7 +556,6 @@
             this.sl4.BorderStyle = System.Windows.Forms.Border3DStyle.SunkenOuter;
             this.sl4.Name = "sl4";
             this.sl4.Size = new System.Drawing.Size(118, 17);
-            this.sl4.Text = "toolStripStatusLabel2";
             this.sl4.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // sl5
@@ -524,7 +565,6 @@
             this.sl5.BorderStyle = System.Windows.Forms.Border3DStyle.SunkenOuter;
             this.sl5.Name = "sl5";
             this.sl5.Size = new System.Drawing.Size(118, 17);
-            this.sl5.Text = "toolStripStatusLabel3";
             this.sl5.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // rtbEditor
@@ -536,6 +576,7 @@
             this.rtbEditor.TabIndex = 3;
             this.rtbEditor.Text = "";
             this.rtbEditor.SelectionChanged += new System.EventHandler(this.rtbEditor_SelectionChanged);
+            this.rtbEditor.MouseDown += new System.Windows.Forms.MouseEventHandler(this.rtbEditor_MouseDown);
             // 
             // mnEditor
             // 
@@ -1188,6 +1229,7 @@
         private System.Windows.Forms.PrintDialog dlgImprimir;
         private System.Drawing.Printing.PrintDocument prindocEditor;
         private System.Windows.Forms.FontDialog dlgFuentes;
+        private System.Windows.Forms.ToolTip ttEditor;
     }
 }
 
