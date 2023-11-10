@@ -131,9 +131,9 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.ComboBox cbIzquierdo;
         private System.Windows.Forms.Button btAceptar;
         private System.Windows.Forms.Button button1;
         public System.Windows.Forms.ComboBox cbDerecho;
+        public System.Windows.Forms.ComboBox cbIzquierdo;
     }
 }
