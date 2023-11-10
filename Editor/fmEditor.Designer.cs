@@ -130,6 +130,8 @@
             this.itIzquierda = new System.Windows.Forms.ToolStripMenuItem();
             this.itCentrado = new System.Windows.Forms.ToolStripMenuItem();
             this.itDerecha = new System.Windows.Forms.ToolStripMenuItem();
+            this.dlgColor = new System.Windows.Forms.ColorDialog();
+            this.dlgAbrir = new System.Windows.Forms.OpenFileDialog();
             this.tsBarraEstandar.SuspendLayout();
             this.tsBarraFormato.SuspendLayout();
             this.stEstadoEditor.SuspendLayout();
@@ -181,6 +183,7 @@
             this.tsbAbrir.Name = "tsbAbrir";
             this.tsbAbrir.Size = new System.Drawing.Size(23, 22);
             this.tsbAbrir.Text = "tsbAbrir";
+            this.tsbAbrir.Click += new System.EventHandler(this.itAbrir_Click);
             // 
             // tsbGuardar
             // 
@@ -430,6 +433,7 @@
             this.cbTamanyo.Size = new System.Drawing.Size(50, 25);
             this.cbTamanyo.SelectedIndexChanged += new System.EventHandler(this.cbTamanyo_SelectedIndexChanged);
             this.cbTamanyo.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.cbTamanyo_KeyPress);
+            this.cbTamanyo.Click += new System.EventHandler(this.cbTamanyo_Click);
             this.cbTamanyo.TextChanged += new System.EventHandler(this.cbTamanyo_TextChanged);
             // 
             // toolStripSeparator8
@@ -445,6 +449,7 @@
             this.tsbColores.Name = "tsbColores";
             this.tsbColores.Size = new System.Drawing.Size(23, 22);
             this.tsbColores.Text = "toolStripButton1";
+            this.tsbColores.Click += new System.EventHandler(this.tsbColores_Click);
             // 
             // stEstadoEditor
             // 
@@ -570,6 +575,7 @@
             this.itAbrir.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.A)));
             this.itAbrir.Size = new System.Drawing.Size(180, 22);
             this.itAbrir.Text = "Abrir";
+            this.itAbrir.Click += new System.EventHandler(this.itAbrir_Click);
             // 
             // itGuardar
             // 
@@ -769,6 +775,7 @@
             this.itColorFondo.Name = "itColorFondo";
             this.itColorFondo.Size = new System.Drawing.Size(220, 22);
             this.itColorFondo.Text = "&Color de Fondo";
+            this.itColorFondo.Click += new System.EventHandler(this.itColorFondo_Click);
             // 
             // toolStripMenuItem7
             // 
@@ -970,6 +977,19 @@
             this.itDerecha.Size = new System.Drawing.Size(180, 22);
             this.itDerecha.Text = "itDerecha";
             // 
+            // dlgColor
+            // 
+            this.dlgColor.AnyColor = true;
+            // 
+            // dlgAbrir
+            // 
+            this.dlgAbrir.AutoUpgradeEnabled = false;
+            this.dlgAbrir.DefaultExt = "rtf";
+            this.dlgAbrir.Filter = "\"Archivo de Texto (.txt)|*.txt|Archivo Enriquecido (.rtf)|*.rtf|Todos los Archivo" +
+    "s (*.*)|*.*\"";
+            this.dlgAbrir.InitialDirectory = ".\\archivos";
+            this.dlgAbrir.Title = "Abrir documentos";
+            // 
             // fmEditor
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1101,6 +1121,8 @@
         private System.Windows.Forms.ToolStripMenuItem itIzquierda;
         private System.Windows.Forms.ToolStripMenuItem itCentrado;
         private System.Windows.Forms.ToolStripMenuItem itDerecha;
+        private System.Windows.Forms.ColorDialog dlgColor;
+        private System.Windows.Forms.OpenFileDialog dlgAbrir;
     }
 }
 

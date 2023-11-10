@@ -168,30 +168,45 @@ namespace Editor
 
         private void tsbNegrita_Click(object sender, EventArgs e)
         {
-            FontStyle negrita = new FontStyle();//Variables para establecer el estilo 
-            FontStyle subrayado = new FontStyle();//de fuente de un texto seleccionado
-            FontStyle tachado = new FontStyle();//FontStyle Define una estructura que 
-            FontStyle cursiva = new FontStyle(); // representa el estilo de una fuente
+            int comienzoSeleccion = rtbEditor.SelectionStart;
+            int longitudSeleccion = rtbEditor.SelectionLength;
+            int finalSeleccion = comienzoSeleccion + longitudSeleccion;
 
-            if (tsbNegrita.Checked)// En función de los checkBox y de su marca 
-            { // asignamos valor a variables o no 
-                negrita = FontStyle.Bold;
-            }
-            if (tsbSubrayado.Checked)
+            // Verifica si hay texto seleccionado
+            if (longitudSeleccion > 0)
             {
-                subrayado = FontStyle.Underline;
-            }
-            if (tsbTachado.Checked)
-            {
-                tachado = FontStyle.Strikeout;
-            }
-            if (tsbCursiva.Checked)
-            {
-                cursiva = FontStyle.Italic;
-            }
+                FontStyle negrita = new FontStyle();//Variables para establecer el estilo 
+                FontStyle subrayado = new FontStyle();//de fuente de un texto seleccionado
+                FontStyle tachado = new FontStyle();//FontStyle Define una estructura que 
+                FontStyle cursiva = new FontStyle(); // representa el estilo de una fuente
 
-            rtbEditor.SelectionFont = //Aplicamos nuevos estilos 
-            new Font(rtbEditor.SelectionFont, negrita | subrayado | tachado | cursiva);
+                if (tsbNegrita.Checked)// En función de los checkBox y de su marca 
+                { // asignamos valor a variables o no 
+                    negrita = FontStyle.Bold;
+                }
+                if (tsbSubrayado.Checked)
+                {
+                    subrayado = FontStyle.Underline;
+                }
+                if (tsbTachado.Checked)
+                {
+                    tachado = FontStyle.Strikeout;
+                }
+                if (tsbCursiva.Checked)
+                {
+                    cursiva = FontStyle.Italic;
+                }
+                for (int x = comienzoSeleccion; x < finalSeleccion; ++x)
+                {
+                    rtbEditor.Select(x, 1); // Seleccionamos caracter por caracter
+
+                    // Aplica los estilos al caracter
+                    rtbEditor.SelectionFont = 
+                        new Font(rtbEditor.SelectionFont.Name, rtbEditor.SelectionFont.Size, negrita | subrayado | tachado | cursiva);
+                }
+                // Restaura la selección original después de realizar cambios
+                rtbEditor.Select(comienzoSeleccion, longitudSeleccion);
+            }
             rtbEditor.Focus();
         }
 
@@ -222,16 +237,28 @@ namespace Editor
 
         private void cbFuentes_SelectedIndexChanged(object sender, EventArgs e)
         {
-            //Aplicamos nuevo tipo de fuente dejando estilo y tamaño anterior
-            rtbEditor.SelectionFont = new Font(cbFuentes.Text,
+            int comienzoSeleccion = rtbEditor.SelectionStart;
+            int longitudSeleccion = rtbEditor.SelectionLength;
+            int finalSeleccion = comienzoSeleccion + longitudSeleccion;
+            for (int x = comienzoSeleccion; x < finalSeleccion; ++x)
+            {
+                rtbEditor.Select(x, 1); //Seleccionamos caracter por caracter
+                                        // Cambiamos la fuente al caracter
+                rtbEditor.SelectionFont = new Font(cbFuentes.Text,
              rtbEditor.SelectionFont.Size, rtbEditor.SelectionFont.Style);
+            }//Aplicamos nuevo tipo de fuente dejando estilo y tamaño anterior
             rtbEditor.Focus();
         }
 
         private void cbTamanyo_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (cbTamanyo.Text != "")
-            { //Aplicamos solo nuevo tamaño dejando el resto como estaba
+            int comienzoSeleccion = rtbEditor.SelectionStart;
+            int longitudSeleccion = rtbEditor.SelectionLength;
+            int finalSeleccion = comienzoSeleccion + longitudSeleccion;
+            for (int x = comienzoSeleccion; x < finalSeleccion; ++x)
+            {
+                rtbEditor.Select(x, 1); //Seleccionamos caracter por caracter
+                                        // Cambiamos la fuente al caracter
                 rtbEditor.SelectionFont = new Font(rtbEditor.SelectionFont.Name,
                 Convert.ToInt32(cbTamanyo.Text), rtbEditor.SelectionFont.Style);
             }
@@ -254,11 +281,79 @@ namespace Editor
 
         private void cbTamanyo_TextChanged(object sender, EventArgs e)
         {
-            if (cbTamanyo.Text != "")
-            { //Aplicamos solo nuevo tamaño dejando el resto como estaba
+            int comienzoSeleccion = rtbEditor.SelectionStart;
+            int longitudSeleccion = rtbEditor.SelectionLength;
+            int finalSeleccion = comienzoSeleccion + longitudSeleccion;
+            for (int x = comienzoSeleccion; x < finalSeleccion; ++x)
+            {
+                rtbEditor.Select(x, 1); //Seleccionamos caracter por caracter
+                                        // Cambiamos la fuente al caracter
                 rtbEditor.SelectionFont = new Font(rtbEditor.SelectionFont.Name,
                 Convert.ToInt32(cbTamanyo.Text), rtbEditor.SelectionFont.Style);
             }
+        }
+
+        private void cbTamanyo_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void tsbColores_Click(object sender, EventArgs e)
+        {
+            dlgColor.Color = rtbEditor.SelectionColor; //Asignamos color de la 
+                                                       // fuente para que el diálogo lo tenga seleccionado
+            if (dlgColor.ShowDialog() == DialogResult.OK) //Ejecutamos el diálogo
+            { // Si se ha pulsado el botón Aceptar, aplicamos el color del diálogo 
+                rtbEditor.SelectionColor = dlgColor.Color; // al texto seleccionado
+                rtbEditor.Modified = true;
+            }
+        }
+
+        private void itColorFondo_Click(object sender, EventArgs e)
+        {
+            dlgColor.Color = rtbEditor.BackColor;
+            if (dlgColor.ShowDialog() == DialogResult.OK)
+            {
+                rtbEditor.BackColor = dlgColor.Color;
+                rtbEditor.Modified = true;
+            }
+        }
+
+        private void itAbrir_Click(object sender, EventArgs e)
+        {
+            stEstadoEditor.Items[0].Text = "Abriendo Archivo de diferentes formatos";
+            if (rtbEditor.Modified) // True si hay cambios sobre el editor
+            {
+                DialogResult resultado = MessageBox.Show("Hay Cambios sin Guardar.Guardas ? ", "Guardar Cambios", MessageBoxButtons.YesNoCancel); 
+            switch (resultado)
+                {
+                    case DialogResult.Yes: // Si contesta si
+                        itGuardar.PerformClick();// Invocamos evento botón guardar 
+                        break; //Después de Guardar Continuamos con operación de abrir
+                    case DialogResult.Cancel: // Si decide cancelar
+                        rtbEditor.Focus(); // Enviamos foco al editor
+                        return; // Abortamos operación de abrir
+                }
+            }
+            if (dlgAbrir.ShowDialog() == DialogResult.OK // Mostramos diálogo
+            && dlgAbrir.FileName.Length > 0)
+            { // Si ha pulsado aceptar y elegido un archivo
+                if (dlgAbrir.FilterIndex == 1)
+                { //Abrimos archivo elegido en el diálogo que tiene FileName
+                    rtbEditor.LoadFile(dlgAbrir.FileName, //Parámetro 2 indica 
+                    RichTextBoxStreamType.PlainText); //formato contenido 
+                }
+                else
+                {
+                    rtbEditor.LoadFile(dlgAbrir.FileName, // Lo mismo con rtf
+                    RichTextBoxStreamType.RichText);
+                }
+                Text = dlgAbrir.FileName; //Mostramos nuevo nombre en barra título
+                rtbEditor.Modified = false; //Sin cambios pendientes de guardar
+            }
+            stEstadoEditor.Items[0].Text = "";
+            itQuitarFormatos.PerformClick(); //Asignamos valores iniciales al editor 
+            rtbEditor.Focus();
         }
     }
 }
