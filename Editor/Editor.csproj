@@ -78,6 +78,9 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="fmDatos.resx">
+      <DependentUpon>fmDatos.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="fmEditor.resx">
       <DependentUpon>fmEditor.cs</DependentUpon>
     </EmbeddedResource>
