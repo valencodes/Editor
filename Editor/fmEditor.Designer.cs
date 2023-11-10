@@ -60,8 +60,16 @@
             this.cbTamanyo = new System.Windows.Forms.ToolStripComboBox();
             this.toolStripSeparator8 = new System.Windows.Forms.ToolStripSeparator();
             this.tsbColores = new System.Windows.Forms.ToolStripButton();
+            this.stEstadoEditor = new System.Windows.Forms.StatusStrip();
+            this.sl1 = new System.Windows.Forms.ToolStripStatusLabel();
+            this.sl2 = new System.Windows.Forms.ToolStripStatusLabel();
+            this.sl3 = new System.Windows.Forms.ToolStripStatusLabel();
+            this.sl4 = new System.Windows.Forms.ToolStripStatusLabel();
+            this.sl5 = new System.Windows.Forms.ToolStripStatusLabel();
+            this.richTextBox1 = new System.Windows.Forms.RichTextBox();
             this.tsBarraEstandar.SuspendLayout();
             this.tsBarraFormato.SuspendLayout();
+            this.stEstadoEditor.SuspendLayout();
             this.SuspendLayout();
             // 
             // tsBarraEstandar
@@ -333,19 +341,96 @@
             this.tsbColores.Size = new System.Drawing.Size(23, 22);
             this.tsbColores.Text = "toolStripButton1";
             // 
+            // stEstadoEditor
+            // 
+            this.stEstadoEditor.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.sl1,
+            this.sl2,
+            this.sl3,
+            this.sl4,
+            this.sl5});
+            this.stEstadoEditor.Location = new System.Drawing.Point(0, 428);
+            this.stEstadoEditor.Name = "stEstadoEditor";
+            this.stEstadoEditor.Size = new System.Drawing.Size(800, 22);
+            this.stEstadoEditor.TabIndex = 2;
+            this.stEstadoEditor.Text = "statusStrip1";
+            // 
+            // sl1
+            // 
+            this.sl1.AutoSize = false;
+            this.sl1.BorderSides = System.Windows.Forms.ToolStripStatusLabelBorderSides.Left;
+            this.sl1.BorderStyle = System.Windows.Forms.Border3DStyle.RaisedOuter;
+            this.sl1.Name = "sl1";
+            this.sl1.Size = new System.Drawing.Size(118, 17);
+            this.sl1.Text = "toolStripStatusLabel1";
+            this.sl1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // sl2
+            // 
+            this.sl2.AutoSize = false;
+            this.sl2.BorderSides = System.Windows.Forms.ToolStripStatusLabelBorderSides.Left;
+            this.sl2.BorderStyle = System.Windows.Forms.Border3DStyle.SunkenOuter;
+            this.sl2.Name = "sl2";
+            this.sl2.Size = new System.Drawing.Size(118, 17);
+            this.sl2.Text = "toolStripStatusLabel1";
+            this.sl2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // sl3
+            // 
+            this.sl3.AutoSize = false;
+            this.sl3.BorderSides = System.Windows.Forms.ToolStripStatusLabelBorderSides.Left;
+            this.sl3.BorderStyle = System.Windows.Forms.Border3DStyle.SunkenOuter;
+            this.sl3.Name = "sl3";
+            this.sl3.Size = new System.Drawing.Size(118, 17);
+            this.sl3.Text = "toolStripStatusLabel1";
+            this.sl3.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // sl4
+            // 
+            this.sl4.AutoSize = false;
+            this.sl4.BorderSides = System.Windows.Forms.ToolStripStatusLabelBorderSides.Left;
+            this.sl4.BorderStyle = System.Windows.Forms.Border3DStyle.SunkenOuter;
+            this.sl4.Name = "sl4";
+            this.sl4.Size = new System.Drawing.Size(118, 17);
+            this.sl4.Text = "toolStripStatusLabel2";
+            this.sl4.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // sl5
+            // 
+            this.sl5.AutoSize = false;
+            this.sl5.BorderSides = System.Windows.Forms.ToolStripStatusLabelBorderSides.Left;
+            this.sl5.BorderStyle = System.Windows.Forms.Border3DStyle.SunkenOuter;
+            this.sl5.Name = "sl5";
+            this.sl5.Size = new System.Drawing.Size(118, 17);
+            this.sl5.Text = "toolStripStatusLabel3";
+            this.sl5.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // richTextBox1
+            // 
+            this.richTextBox1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.richTextBox1.Location = new System.Drawing.Point(0, 50);
+            this.richTextBox1.Name = "richTextBox1";
+            this.richTextBox1.Size = new System.Drawing.Size(800, 378);
+            this.richTextBox1.TabIndex = 3;
+            this.richTextBox1.Text = "";
+            // 
             // fmEditor
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.richTextBox1);
+            this.Controls.Add(this.stEstadoEditor);
             this.Controls.Add(this.tsBarraFormato);
             this.Controls.Add(this.tsBarraEstandar);
             this.Name = "fmEditor";
-            this.Text = "Form1";
+            this.Text = "Editor";
             this.tsBarraEstandar.ResumeLayout(false);
             this.tsBarraEstandar.PerformLayout();
             this.tsBarraFormato.ResumeLayout(false);
             this.tsBarraFormato.PerformLayout();
+            this.stEstadoEditor.ResumeLayout(false);
+            this.stEstadoEditor.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -384,6 +469,13 @@
         private System.Windows.Forms.ToolStripComboBox cbTamanyo;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator8;
         private System.Windows.Forms.ToolStripButton tsbColores;
+        private System.Windows.Forms.StatusStrip stEstadoEditor;
+        private System.Windows.Forms.ToolStripStatusLabel sl1;
+        private System.Windows.Forms.ToolStripStatusLabel sl2;
+        private System.Windows.Forms.ToolStripStatusLabel sl3;
+        private System.Windows.Forms.ToolStripStatusLabel sl4;
+        private System.Windows.Forms.ToolStripStatusLabel sl5;
+        private System.Windows.Forms.RichTextBox richTextBox1;
     }
 }
 
