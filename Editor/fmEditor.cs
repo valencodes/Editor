@@ -798,5 +798,20 @@ namespace Editor
         {
             new fmAcercade().ShowDialog();
         }
+
+        private void itAyuda_Click(object sender, EventArgs e)
+        {
+            
+        }
+
+        private void itAyudaGeneral_Click(object sender, EventArgs e)
+        {
+            Help.ShowHelp(this, @"AyudaDanielaVGaleote.chm");
+        }
+
+        private void itIndiceAyuda_Click(object sender, EventArgs e)
+        {
+            Help.ShowHelpIndex(this, @"AyudaDanielaVGaleote.chm");
+        }
     }
 }
