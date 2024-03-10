@@ -5,6 +5,8 @@ VisualStudioVersion = 17.7.34031.279
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Editor", "Editor\Editor.csproj", "{EA997881-0744-4719-AA2E-D575346DDD99}"
 EndProject
+Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "Editor de Texto", "Editor de Texto\Editor de Texto.vdproj", "{48FC0628-428D-40DA-80E1-944F0EA12685}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,8 @@ Global
 		{EA997881-0744-4719-AA2E-D575346DDD99}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{EA997881-0744-4719-AA2E-D575346DDD99}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{EA997881-0744-4719-AA2E-D575346DDD99}.Release|Any CPU.Build.0 = Release|Any CPU
+		{48FC0628-428D-40DA-80E1-944F0EA12685}.Debug|Any CPU.ActiveCfg = Debug
+		{48FC0628-428D-40DA-80E1-944F0EA12685}.Release|Any CPU.ActiveCfg = Release
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
